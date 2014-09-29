@@ -1,0 +1,2 @@
+[Mon Sep 29 14:20:22.349222 2014] [core:alert] [pid 3998] [client 127.0.0.1:47140] /home/leonerd12/CursoZEND/public/.htaccess: Invalid command 'RewriteEngine', perhaps misspelled or defined by a module not included in the server configuration
+[Mon Sep 29 14:21:11.962243 2014] [authz_core:error] [pid 4082] [client 127.0.0.1:47141] AH01630: client denied by server configuration: /home/leonerd12/CursoZEND/

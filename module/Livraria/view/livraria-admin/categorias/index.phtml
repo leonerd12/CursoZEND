@@ -1,0 +1,19 @@
+<h1>Categorias</h1>
+<br>
+
+<table class="table table-hover">
+    <thead>
+    <th>Id</th>
+    <th>Nome</th>
+    <th>Ação</th>
+</thead>
+<tbody>
+    <?php foreach ($this->data as $entity): ?>
+        <tr>
+            <td><?= $entity->getId(); ?></td>
+            <td><?= $entity->getNome(); ?></td>
+            <td></td>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
+</table>

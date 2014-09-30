@@ -9,6 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="categorias")
  */
 class Categoria {
+    public function __construct($options = null) {
+        Configurator::configure($this, $options);
+    }
+    
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

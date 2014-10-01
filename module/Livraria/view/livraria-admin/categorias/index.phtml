@@ -1,18 +1,26 @@
-<h1>Categorias</h1>
+<div class="col-md-offset-5">
+    <h1>Categorias</h1>
+</div>
 <br>
-
-<table class="table table-hover">
+<div class="col-md-offset-5">
+    <p>
+        <a href="<?= $this->url('livraria-admin', array('controller' => 'categorias', 'action' => 'new')) ?>">Novo</a>
+    </p>
+</div>
+<table class="table table-bordered">
     <thead>
     <th>Id</th>
     <th>Nome</th>
-    <th>Ação</th>
+    <th>Editar</th>
+    <th>Excluir</th>
 </thead>
 <tbody>
     <?php foreach ($this->data as $entity): ?>
         <tr>
             <td><?= $entity->getId(); ?></td>
             <td><?= $entity->getNome(); ?></td>
-            <td></td>
+            <td><a href="<?= $this->url('livraria-admin-interna', array('controller' => 'categorias', 'action' => 'edit', 'id' => $entity->getId())) ?>">Editar</a></td>
+            <td><a href="<?= $this->url('livraria-admin-interna', array('controller' => 'categorias', 'action' => 'delete', 'id' => $entity->getId())) ?>">Excluir</a></td>
         </tr>
     <?php endforeach; ?>
 </tbody>

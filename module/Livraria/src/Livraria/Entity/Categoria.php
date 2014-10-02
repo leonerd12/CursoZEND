@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Categoria {
     public function __construct($options = null) {
         Configurator::configure($this, $options);
+        $this->livros = new ArrayCollection();
+        
     }
     
     /**
@@ -26,6 +28,14 @@ class Categoria {
      */
     protected $nome;
     
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Livraria\Entity\Livro", mappedBy="categoria")
+     * @var type 
+     */
+    protected $livros;
+
+
     public function getId() {
         return $this->id;
     }
@@ -46,6 +56,11 @@ class Categoria {
         return $this->nome;
     }
     
+    public function getLivros() {
+        return $this->livros;
+    }
+
+        
     public function toArray() {
         return array('id' => $this->id, 'nome'=>  $this->nome);
     }

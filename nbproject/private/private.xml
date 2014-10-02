@@ -3,9 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/LivrariaAdmin/Form/Categoria.php</file>
-            <file>file:/home/leonerd12/CursoZEND/module/Livraria/view/livraria-admin/categorias/new.phtml</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/view/livraria-admin/categorias/edit.phtml</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/Livraria/Service/Livro.php</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/view/livraria-admin/livros/index.phtml</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/Livraria/Service/AbstractService.php</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/LivrariaAdmin/Controller/CrudController.php</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/view/livraria-admin/categorias/index.phtml</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/Livraria/Entity/Livro.php</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/Module.php</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/config/module.config.php</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/Livraria/Service/Categoria.php</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/LivrariaAdmin/Form/Livro.php</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/LivrariaAdmin/Controller/LivrosController.php</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/Livraria/Entity/CategoriaRepository.php</file>
             <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/LivrariaAdmin/Controller/CategoriasController.php</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/Livraria/Entity/Categoria.php</file>
         </group>
     </open-files>
 </project-private>

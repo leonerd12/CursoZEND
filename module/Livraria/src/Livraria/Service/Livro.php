@@ -27,7 +27,7 @@ class Livro extends AbstractService {
         $entity = $this->em->getReference($this->entity, $data['id']);
         $entity = Configurator::configure($entity, $data);
         
-        $categoria = $this->em->getReference('Livraria\Entity\Categoria', $data['categoria_id']);
+        $categoria = $this->em->getReference($this->entity, $data['categoria_id']);
 
         $entity->setCategoria($categoria);
         $this->em->persist($entity);

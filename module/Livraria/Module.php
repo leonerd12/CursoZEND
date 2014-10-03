@@ -13,7 +13,7 @@ namespace Livraria;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
-use Livraria\Model\CategoriaTable;
+use Livraria\Model\CategoriaTable as CategoriaTable;
 use Livraria\Service\Categoria as CategoriaService;
 use Livraria\Service\Livro as LivroService;
 use LivrariaAdmin\Form\Livro as LivroFrm;
@@ -40,7 +40,7 @@ class Module {
             'factories' => array(
                 'Livraria\Model\CategoriaService' => function ($service) {
             $dbAdapter = $service->get('Zend\Db\Adapter\Adapter');
-            $categoriaTable = new Model\CategoriaTable($adapter);
+            $categoriaTable = new CategoriaTable($adapter);
 
             $categoriaService = new Model\CategoriaService($categoriaTable);
             return $categoriaService;
@@ -53,9 +53,12 @@ class Module {
         },
                 'LivrariaAdmin\Form\Livro' => function($service) {
             $em = $service->get('Doctrine\ORM\EntityManager');
+            
             $repository = $em->getRepository("Livraria\Entity\Categoria");
-            $categoria = $repository->fetchPairs();
-            return new LivroService(null, $categoria);
+            $categorias = $repository->fetchPairs();
+            
+            
+            return new LivroFrm(null, $categorias);
         }
             )
         );

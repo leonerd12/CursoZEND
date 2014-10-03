@@ -22,7 +22,7 @@ abstract class AbstractService{
         
         $this->em->persist($entity);
         $this->em->flush();
-        return $entity;
+        return $entity; 
     }
     
     public function update(array $data) {

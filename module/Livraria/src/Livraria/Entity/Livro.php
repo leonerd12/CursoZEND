@@ -1,14 +1,15 @@
 <?php
 
-namespace Livraria\Enitity;
+namespace Livraria\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="livros")
- * @ORM\Entity(repositoryclass="Livraria\Entity\LivroRepository")
+ * @ORM\Entity(repositoryClass="Livraria\Entity\LivroRepository")
  */
+
 class Livro {
 
     /**

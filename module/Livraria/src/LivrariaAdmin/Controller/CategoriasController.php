@@ -9,7 +9,7 @@ class CategoriasController extends CrudController {
         $this->form = 'LivrariaAdmin\Form\Categoria';
         $this->service = 'Livraria\Service\Categoria';
         $this->controller = 'categorias';
-        $this->route = 'livraria-admin';
+        $this->route = 'livraria-admin-interna';
     }
 
 }

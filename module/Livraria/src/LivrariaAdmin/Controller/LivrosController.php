@@ -2,6 +2,8 @@
 
 namespace LivrariaAdmin\Controller;
 
+use Zend\View\Model\ViewModel;
+
 class LivrosController extends CrudController {
 
     public function __construct() {
@@ -11,15 +13,17 @@ class LivrosController extends CrudController {
         $this->controller = 'livros';
         $this->route = 'livraria-admin';
     }
-    
+
     public function newAction() {
-        $form = $this->getServiceLocator()->get($this->form);
-        
+
+        $form = new $this->form;
         $request = $this->getRequest();
+
 
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
+
                 $service = $this->getServiceLocator()->get($this->service);
                 $service->insert($request->getPost()->toArray());
                 return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
@@ -29,7 +33,7 @@ class LivrosController extends CrudController {
     }
 
     public function editAction() {
-        $form = $this->getServiceLocator()->get($this->form);
+        $form = new $this->form;
         $request = $this->getRequest();
 
         $repository = $this->getEm()->getRepository($this->entity);

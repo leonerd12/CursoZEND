@@ -21,7 +21,9 @@ abstract class CrudController extends AbstractActionController {
     protected $controller;
 
     public function indexAction() {
-        $list = $this->getEm()->getRepository($this->entity)->findAll();
+        $list = $this->getEm()
+                ->getRepository($this->entity)
+                ->findAll();
 
         $page = $this->params()->fromRoute('page');
 
@@ -48,7 +50,7 @@ abstract class CrudController extends AbstractActionController {
     }
 
     public function editAction() {
-        $form = new FrmCategoria();
+        $form = new $this->form;
         $request = $this->getRequest();
 
         $repository = $this->getEm()->getRepository($this->entity);

@@ -75,6 +75,12 @@ class Categoria extends \Livraria\Entity\Categoria implements \Doctrine\ORM\Prox
         return parent::__toString();
     }
 
+    public function getLivros()
+    {
+        $this->__load();
+        return parent::getLivros();
+    }
+
     public function toArray()
     {
         $this->__load();
@@ -84,7 +90,7 @@ class Categoria extends \Livraria\Entity\Categoria implements \Doctrine\ORM\Prox
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'nome');
+        return array('__isInitialized__', 'id', 'nome', 'livros');
     }
 
     public function __clone()

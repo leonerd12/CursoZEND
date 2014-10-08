@@ -4,13 +4,13 @@ namespace LivrariaAdmin\Form;
 
 use Zend\Form\Form;
 
-class Categoria extends Form {
+class User extends Form {
     
     public function __construct($name = null) {
-        parent::__construct('categoria');
+        parent::__construct('user');
         
         $this->setAttribute('method', 'post');
-        $this->setInputFilter(new CategoriaFilter);
+//        $this->setInputFilter(new CategoriaFilter);
         
         $this->add(array(
            'name' =>'id',
@@ -26,8 +26,29 @@ class Categoria extends Form {
                 'label' => 'Nome'
             ),
             'attributes' => array(
-                'id' => 'nome',
                 'placeholder' => 'Entre com o nome'
+            )
+        ));
+        
+        $this->add(array(
+           'name' => 'email',
+            'options' => array(
+                'type' => 'email',
+                'label' => 'Email'
+            ),
+            'attributes' => array(
+                'placeholder' => 'Entre com o email'
+            )
+        ));
+        
+        $this->add(array(
+           'name' => 'password',
+            'options' => array(
+                'type' => 'Password',
+                'label' => 'Senha'
+            ),
+            'attributes' => array(
+                'type' => 'password',
             )
         ));
         

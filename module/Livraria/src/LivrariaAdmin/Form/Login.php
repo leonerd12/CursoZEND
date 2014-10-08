@@ -4,30 +4,33 @@ namespace LivrariaAdmin\Form;
 
 use Zend\Form\Form;
 
-class Categoria extends Form {
+class Login extends Form {
     
     public function __construct($name = null) {
-        parent::__construct('categoria');
+        parent::__construct('user');
         
         $this->setAttribute('method', 'post');
-        $this->setInputFilter(new CategoriaFilter);
-        
+//        $this->setInputFilter(new CategoriaFilter);
+                
         $this->add(array(
-           'name' =>'id',
-            'attibutes' => array(
-                'type' => 'hidden'
+           'name' => 'email',
+            'options' => array(
+                'type' => 'email',
+                'label' => 'Email'
+            ),
+            'attributes' => array(
+                'placeholder' => 'Entre com o email'
             )
         ));
         
         $this->add(array(
-           'name' => 'nome',
+           'name' => 'password',
             'options' => array(
-                'type' => 'text',
-                'label' => 'Nome'
+                'type' => 'Password',
+                'label' => 'Senha'
             ),
             'attributes' => array(
-                'id' => 'nome',
-                'placeholder' => 'Entre com o nome'
+                'type' => 'password',
             )
         ));
         
@@ -35,7 +38,7 @@ class Categoria extends Form {
            'name' => 'submit',
             'type' => 'Zend\Form\Element\Submit',
             'attributes' => array(
-                'value' => 'Salvar',
+                'value' => 'Logar',
                 'class' => 'btn-success'
             )
         ));

@@ -1,22 +1,13 @@
 <?php
 
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-
 namespace Livraria;
 
-use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\MvcEvent;
-
-use Livraria\Model\CategoriaTable as CategoriaTable;
+use Livraria\Model\CategoriaTable;
 use Livraria\Service\Categoria as CategoriaService;
 use Livraria\Service\Livro as LivroService;
+use Livraria\Service\User as UserService;
 use LivrariaAdmin\Form\Livro as LivroFrm;
+use Livraria\Auth\Adapter as AuthAdapter;
 
 class Module {
 
@@ -36,12 +27,12 @@ class Module {
     }
 
     public function getServiceConfig() {
+
         return array(
             'factories' => array(
-                'Livraria\Model\CategoriaService' => function ($service) {
+                'Livraria\Model\CategoriaService' => function($service) {
             $dbAdapter = $service->get('Zend\Db\Adapter\Adapter');
-            $categoriaTable = new CategoriaTable($adapter);
-
+            $categoriaTable = new CategoriaTable($dbAdapter);
             $categoriaService = new Model\CategoriaService($categoriaTable);
             return $categoriaService;
         },
@@ -51,16 +42,19 @@ class Module {
                 'Livraria\Service\Livro' => function($service) {
             return new LivroService($service->get('Doctrine\ORM\EntityManager'));
         },
+                'Livraria\Service\User' => function($service) {
+            return new UserService($service->get('Doctrine\ORM\EntityManager'));
+        },
                 'LivrariaAdmin\Form\Livro' => function($service) {
             $em = $service->get('Doctrine\ORM\EntityManager');
-            
-            $repository = $em->getRepository("Livraria\Entity\Categoria");
+            $repository = $em->getRepository('Livraria\Entity\Categoria');
             $categorias = $repository->fetchPairs();
-            
-            
             return new LivroFrm(null, $categorias);
-        }
-            )
+        },
+                'Livraria\Auth\Adapter' => function($service) {
+            return new AuthAdapter($service->get('Doctrine\ORM\EntityManager'));
+        },
+            ),
         );
     }
 

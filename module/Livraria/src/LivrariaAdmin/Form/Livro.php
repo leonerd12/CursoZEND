@@ -7,18 +7,18 @@ use Zend\Form\Form,
 
 class Livro extends Form {
     
-    protected $em;
+    protected $categorias;
 
-    public function __construct($name = null, $categoria=null) {
+    public function __construct($name = null, array $categorias = null) {
         parent::__construct('livro');
-        $this->categorias = $categoria;
+        $this->categorias  = $categorias;
 
         $this->setAttribute('method', 'post');
-//        $this->setInputFilter(new CategoriaFilter);
+//        $this->setInputFilter(new LivroFilter);
 
         $this->add(array(
             'name' => 'id',
-            'attributes' => array(
+            'attibutes' => array(
                 'type' => 'hidden'
             )
         ));
@@ -34,13 +34,25 @@ class Livro extends Form {
                 'placeholder' => 'Entre com o nome'
             )
         ));
-                
         
         $categoria = new Select();
-        $categoria->setLabel('Categoria')
-                ->setName('categoria')
-                ->setOptions(array('value_options' => $categorias)
+        $categoria->setLabel("Categoria")
+                ->setName("categoria")
+                ->setOptions(array('value_options' => $this->categorias)
         );
+        $this->add($categoria);
+
+        $this->add(array(
+            'name' => 'autor',
+            'options' => array(
+                'type' => 'text',
+                'label' => 'Autor'
+            ),
+            'attributes' => array(
+                'id' => 'autor',
+                'placeholder' => 'Entre com o autor'
+            ),
+        ));
         
         $this->add(array(
             'name' => 'isbn',
@@ -51,19 +63,7 @@ class Livro extends Form {
             'attributes' => array(
                 'id' => 'isbn',
                 'placeholder' => 'Entre com o ISBN'
-            )
-        ));
-        
-        $this->add(array(
-            'name' => 'autor',
-            'options' => array(
-                'type' => 'text',
-                'label' => 'Autor'
             ),
-            'attributes' => array(
-                'id' => 'autor',
-                'placeholder' => 'Entre com o nome do autor'
-            )
         ));
         
         $this->add(array(
@@ -74,16 +74,16 @@ class Livro extends Form {
             ),
             'attributes' => array(
                 'id' => 'valor',
-                'placeholder' => 'Entre com o valor'
-            )
+                'placeholder' => 'Entre com o Valor'
+            ),
         ));
-
+        
         $this->add(array(
             'name' => 'submit',
             'type' => 'Zend\Form\Element\Submit',
             'attributes' => array(
                 'value' => 'Salvar',
-                'class' => 'btn-sucess'
+                'class' => 'btn-success'
             )
         ));
     }

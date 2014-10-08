@@ -4,23 +4,24 @@ namespace LivrariaAdmin\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController,
     Zend\View\Model\ViewModel;
-use Zend\Paginator\Paginator;
-use Zend\Paginator\Adapter\ArrayAdapter;
+use Zend\Paginator\Paginator,
+    Zend\Paginator\Adapter\ArrayAdapter;
 
 abstract class CrudController extends AbstractActionController {
 
     /**
      *
-     * @var EntityManager 
+     * @var EntityManager
      */
     protected $em;
-    protected $form;
     protected $service;
-    protected $route;
     protected $entity;
+    protected $form;
+    protected $route;
     protected $controller;
 
     public function indexAction() {
+
         $list = $this->getEm()
                 ->getRepository($this->entity)
                 ->findAll();
@@ -29,13 +30,14 @@ abstract class CrudController extends AbstractActionController {
 
         $paginator = new Paginator(new ArrayAdapter($list));
 //        $paginator->setCurrentPageNumber($page);
-//        $paginator->setDefaultItemCountPerPage(1);
+//        $paginator->setDefaultItemCountPerPage(10);
 
         return new ViewModel(array('data' => $paginator, 'page' => $page));
     }
 
     public function newAction() {
-        $form = new $this->form;
+        $form = new $this->form();
+
         $request = $this->getRequest();
 
         if ($request->isPost()) {
@@ -43,14 +45,16 @@ abstract class CrudController extends AbstractActionController {
             if ($form->isValid()) {
                 $service = $this->getServiceLocator()->get($this->service);
                 $service->insert($request->getPost()->toArray());
+
                 return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
             }
         }
+
         return new ViewModel(array('form' => $form));
     }
 
     public function editAction() {
-        $form = new $this->form;
+        $form = new $this->form();
         $request = $this->getRequest();
 
         $repository = $this->getEm()->getRepository($this->entity);
@@ -64,27 +68,31 @@ abstract class CrudController extends AbstractActionController {
             $form->setData($request->getPost());
             if ($form->isValid()) {
                 $service = $this->getServiceLocator()->get($this->service);
-                $service->insert($request->getPost()->toArray());
+                $service->update($request->getPost()->toArray());
+
                 return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
             }
         }
+
         return new ViewModel(array('form' => $form));
     }
 
     public function deleteAction() {
-        $service = $this->getServiceLocator()->get('Livraria\Service\Categoria');
+        $service = $this->getServiceLocator()->get($this->service);
         if ($service->delete($this->params()->fromRoute('id', 0))) {
             return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
         }
     }
 
-    /**
+    /*
      * @return EntityManager
      */
+
     protected function getEm() {
         if (null === $this->em) {
             $this->em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         }
+
         return $this->em;
     }
 

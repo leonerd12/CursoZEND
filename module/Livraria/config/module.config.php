@@ -21,7 +21,7 @@ return array(
                     'route' => '/admin/[:controller[/:action]][/:id]',
                     'constraints' => array(
                         'id' => '[0-9]+'
-                    )
+                    ),
                 ),
             ),
             'livraria-admin' => array(
@@ -33,6 +33,16 @@ return array(
                         'page' => 1
                     )
                 )
+            ),
+            'livraria-admin-auth' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/admin/auth',
+                    'defaults' => array(
+                        'action' => 'index',
+                        'controller' => 'livraria-admin/auth'
+                    )
+                )
             )
         ),
     ),
@@ -40,7 +50,9 @@ return array(
         'invokables' => array(
             'Livraria\Controller\Index' => 'Livraria\Controller\IndexController',
             'categorias' => 'LivrariaAdmin\Controller\CategoriasController',
-            'livros' => 'LivrariaAdmin\Controller\LivrosController'
+            'livros' => 'LivrariaAdmin\Controller\LivrosController',
+            'users' => 'LivrariaAdmin\Controller\UsersController',
+            'livraria-admin/auth' => 'LivrariaAdmin\Controller\AuthController',
         ),
     ),
     'view_manager' => array(

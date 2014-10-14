@@ -51,34 +51,16 @@ class User extends \Livraria\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::getId();
     }
 
-    public function getNome()
-    {
-        $this->__load();
-        return parent::getNome();
-    }
-
-    public function getEmail()
-    {
-        $this->__load();
-        return parent::getEmail();
-    }
-
-    public function getPassword()
-    {
-        $this->__load();
-        return parent::getPassword();
-    }
-
-    public function getSalt()
-    {
-        $this->__load();
-        return parent::getSalt();
-    }
-
     public function setId($id)
     {
         $this->__load();
         return parent::setId($id);
+    }
+
+    public function getNome()
+    {
+        $this->__load();
+        return parent::getNome();
     }
 
     public function setNome($nome)
@@ -87,16 +69,40 @@ class User extends \Livraria\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::setNome($nome);
     }
 
+    public function getEmail()
+    {
+        $this->__load();
+        return parent::getEmail();
+    }
+
     public function setEmail($email)
     {
         $this->__load();
         return parent::setEmail($email);
     }
 
+    public function getPassword()
+    {
+        $this->__load();
+        return parent::getPassword();
+    }
+
     public function setPassword($password)
     {
         $this->__load();
         return parent::setPassword($password);
+    }
+
+    public function getSalt()
+    {
+        $this->__load();
+        return parent::getSalt();
+    }
+
+    public function encryptPassword($password)
+    {
+        $this->__load();
+        return parent::encryptPassword($password);
     }
 
     public function toArray()

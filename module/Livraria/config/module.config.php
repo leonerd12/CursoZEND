@@ -24,6 +24,7 @@ return array(
                     ),
                 ),
             ),
+            
             'livraria-admin' => array(
                 'type' => 'Segment',
                 'options' => array(
@@ -40,6 +41,16 @@ return array(
                     'route' => '/admin/auth',
                     'defaults' => array(
                         'action' => 'index',
+                        'controller' => 'livraria-admin/auth'
+                    )
+                )
+            ),
+            'livraria-admin-logout' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/admin/auth/logout',
+                    'defaults' => array(
+                        'action' => 'logout',
                         'controller' => 'livraria-admin/auth'
                     )
                 )

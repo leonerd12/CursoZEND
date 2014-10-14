@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User {
 
-    //put your code here
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -53,25 +52,13 @@ class User {
         return $this->id;
     }
 
-    public function getNome() {
-        return $this->nome;
-    }
-
-    public function getEmail() {
-        return $this->email;
-    }
-
-    public function getPassword() {
-        return $this->password;
-    }
-
-    public function getSalt() {
-        return $this->salt;
-    }
-
     public function setId($id) {
         $this->id = $id;
         return $this;
+    }
+
+    public function getNome() {
+        return $this->nome;
     }
 
     public function setNome($nome) {
@@ -79,24 +66,34 @@ class User {
         return $this;
     }
 
+    public function getEmail() {
+        return $this->email;
+    }
+
     public function setEmail($email) {
         $this->email = $email;
         return $this;
     }
 
+    public function getPassword() {
+        return $this->password;
+    }
+
     public function setPassword($password) {
+
         $hashSenha = $this->encryptPassword($password);
-        
         $this->password = $hashSenha;
         return $this;
     }
-    
-    public function encryptPassword($password) {
-        $hashSenha = hash('sha512', $password . $this->getSalt());
 
-        for ($i = 0; $i < 64000; $i++) {
+    public function getSalt() {
+        return $this->salt;
+    }
+
+    public function encryptPassword($password) {
+        $hashSenha = hash('sha512', $password . $this->salt);
+        for ($i = 0; $i < 64000; $i++)
             $hashSenha = hash('sha512', $hashSenha);
-        }
         
         return $hashSenha;
     }
@@ -106,7 +103,8 @@ class User {
             'id' => $this->getId(),
             'nome' => $this->getNome(),
             'email' => $this->getEmail(),
-            'password' => $this->getPassword()
+            'password' => $this->getPassword(),
+            'salt' => $this->salt
         );
     }
 

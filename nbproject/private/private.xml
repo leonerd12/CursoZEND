@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/leonerd12/CursoZEND/module/Livraria/Module.php</file>
-            <file>file:/home/leonerd12/CursoZEND/module/Livraria/view/livraria-admin/auth/index.phtml</file>
-            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/LivrariaAdmin/Controller/UsersController.php</file>
-            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/Livraria/Entity/User.php</file>
-            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/Livraria/Auth/Adapter.php</file>
-            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/LivrariaAdmin/Form/Login.php</file>
-            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/Livraria/Entity/UserRepository.php</file>
             <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/LivrariaAdmin/Controller/AuthController.php</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/Livraria/Auth/Adapter.php</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/src/Livraria/Entity/UserRepository.php</file>
+            <file>file:/home/leonerd12/CursoZEND/module/Livraria/view/livraria-admin/auth/index.phtml</file>
         </group>
     </open-files>
 </project-private>

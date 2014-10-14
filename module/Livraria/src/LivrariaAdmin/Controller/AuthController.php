@@ -4,10 +4,8 @@ namespace LivrariaAdmin\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController,
     Zend\View\Model\ViewModel;
-
 use Zend\Authentication\AuthenticationService;
 use Zend\Authentication\Storage\Session as SessionStorage;
-
 use LivrariaAdmin\Form\Login as LoginForm;
 
 class AuthController extends AbstractActionController {
@@ -28,25 +26,29 @@ class AuthController extends AbstractActionController {
                 $sessionStorage = new SessionStorage("LivrariaAdmin");
                 $auth->setStorage($sessionStorage);
 
-                $adapter = $this->getServiceLocator()->get('Livraria\Auth\Adapter');
-                $adapter->setUsername($data['email'])
+                $authAdapter = $this->getServiceLocator()->get('Livraria\Auth\Adapter');
+                $authAdapter->setUsername($data['email'])
                         ->setPassword($data['password']);
 
-                $result = $auth->authenticate($adapter);
-                
-//                var_dump($result); 
-//                die();
-                
-                
+                $result = $auth->authenticate($authAdapter);
 
-                if ($adapter->isValid()) {
+                if ($result->isValid()) {
                     $sessionStorage->write($auth->getIdentity()['user'], null);
                     return $this->redirect()->toRoute("livraria-admin", array('controller' => 'categorias'));
-                }else
+                } else
                     $error = true;
             }
         }
-        
-        return new ViewModel(array('form'=>$form,'error'=>$error));
+
+        return new ViewModel(array('form' => $form, 'error' => $error));
     }
+
+    public function logoutAction() {
+        $auth = new AuthenticationService;
+        $auth->setStorage(new SessionStorage('LivrariaAdmin'));
+        $auth->clearIdentity();
+
+        return $this->redirect()->toRoute('livraria-admin-auth');
+    }
+
 }

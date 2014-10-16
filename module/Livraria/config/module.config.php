@@ -41,7 +41,7 @@ return array(
                     'route' => '/admin/auth',
                     'defaults' => array(
                         'action' => 'index',
-                        'controller' => 'livraria-admin/auth'
+                        'controller' => 'livraria-admin/auth',
                     )
                 )
             ),
@@ -63,8 +63,14 @@ return array(
             'categorias' => 'LivrariaAdmin\Controller\CategoriasController',
             'livros' => 'LivrariaAdmin\Controller\LivrosController',
             'users' => 'LivrariaAdmin\Controller\UsersController',
+            'pessoas' => 'LivrariaAdmin\Controller\PessoasController',
+            'profissoes' => 'LivrariaAdmin\Controller\ProfissoesController',
             'livraria-admin/auth' => 'LivrariaAdmin\Controller\AuthController',
         ),
+    ),
+    'module_layouts' => array(
+        'Livraria' => "layout/layout",
+        'LivrariaAdmin' => "layout/layout-admin"
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,

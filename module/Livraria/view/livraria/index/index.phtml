@@ -1,20 +1,15 @@
 <h1>Categorias</h1>
 <br>
 <div class="container">
-    <table class="table table-bordered">
-        <thead>
-        <th>#</th>
-        <th>Nome</th>
-        </thead>
-        <tbody>
-
-            <?php foreach ($this->dados as $entity): ?>
-                <tr>
-                    <td><?= $entity->getId(); ?></td>
-                    <td><?= $entity->getNome(); ?></td>
-                </tr>
-            <?php endforeach; ?>
-
-        </tbody>
-    </table>
+    <ul>
+        <?php foreach ($this->dados as $entity): ?>
+            <li><?= $entity->getNome(); ?>
+                <ul>
+                    <?php foreach ($entity->getLivros() as $livro): ?>
+                        <li><?= $livro->getNome(); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </li>
+        <?php endforeach; ?>
+    </ul>
 </div>

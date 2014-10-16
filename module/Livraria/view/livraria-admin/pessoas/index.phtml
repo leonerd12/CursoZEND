@@ -1,0 +1,32 @@
+<h1>Livros</h1>
+
+<br>
+
+<p class="text-center">
+    <a href="<?= $this->url('livraria-admin', array('controller' => 'livros', 'action' => 'new')) ?>">Novo</a>
+</p>
+
+<table class="table table-borderless">
+    <thead>
+    <th>#</th>
+    <th>Nome</th>
+    <th>Categorias</th>
+    <th>Autor</th>
+    <th>Valor</th>
+    <th>Editar</th>
+    <th>Excluir</th>
+</thead>
+<tbody>
+    <?php foreach ($this->data as $entity): ?>
+        <tr>
+            <td><?= $entity->getId(); ?></td>
+            <td><?= $entity->getNome(); ?></td>
+            <td><?= $entity->getCategoria(); ?></td>
+            <td><?= $entity->getAutor(); ?></td>
+            <td>R$ <?= $entity->getValor(); ?></td>
+            <td><a href="<?= $this->url('livraria-admin-interna', array('controller' => 'livros', 'action' => 'edit', 'id' => $entity->getId())) ?>">Editar</a></td>
+            <td><a href="<?= $this->url('livraria-admin-interna', array('controller' => 'livros', 'action' => 'delete', 'id' => $entity->getId())) ?>">Excluir</a></td>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
+</table>
